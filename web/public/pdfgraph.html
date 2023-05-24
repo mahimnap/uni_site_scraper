@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/css/bootstrap.min.css">
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.2.1/dist/js/bootstrap.min.js"></script>
+    <title>PDF Graph Example</title>
+    <style>
+      body {
+        padding-top: 25px;
+        padding-bottom: 25px;
+        background-color: #363940;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(10px + 2vmin);
+        color: white;
+      }
+      .App-pdf-section {
+        background-color: #4134341e;
+        border-radius: 15px;
+        height: 1250px;
+        width: 90%;
+        margin-bottom: 30px;
+      }   
+
+      .App-pdf-subsection {
+        padding-top: 20px;
+        height: 50%;
+      }
+
+      .App-pdf-section-iframe {
+        width: 90%; 
+        height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>All University of Guelph and University of Carleton Majors</h2>
+    <div class="App-pdf-section">
+
+      <div>
+        <div class="App-pdf-subsection">
+          <h3>Guelph Majors</h3>
+          <a class="App-link" href="./graph_multimajor.pdf" target="_blank">View in a new tab</a>
+          <iframe class="App-pdf-section-iframe" src="./graph_multimajor.pdf" frameborder="0" scrolling="auto" title="Guelph Graph">
+            <p>Here are the graphs for all Guelph majors</p>
+            <a href="./graph_multimajor.pdf">Download PDF</a>
+          </iframe>
+        </div>
+
+        <div class="App-pdf-subsection">
+          <h3>Carleton Majors</h3>
+          <a class="App-link" href="./graph_carleton.pdf" target="_blank">View in a new tab</a>
+          <iframe class="App-pdf-section-iframe" src="./graph_carleton.pdf" frameborder="0" scrolling="auto" title="Carleton Graph">
+            <p>Here are the graphs for all Carleton majors</p>
+            <a href="./graph_carleton.pdf">Download PDF</a>
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

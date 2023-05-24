@@ -1,5 +1,5 @@
 import unittest
-from src.scraper.prereq_parser import *
+from src.scraper.course_scraper import *
 
 class TestPrereqClean(unittest.TestCase):
     def test_prereq_clean_no_data(self):
