@@ -14,12 +14,17 @@ To improve speed, it was decided to record course information on disk to remove 
 
 Our scraper is built using the playwright library so it can be run from any machine with vanilla Python3 installed. The scraper is also set up to allow for descriptive and helpful logging information to keep the developers informed on erroneous execution. Further improvements can be made to automate the sending of these log files. to the developers. The scraper also records its execution time so the developers can gather the data and study ways to improve it in the future.
 
-It will collect course information from the [University of Guelph website](https://calendar.uoguelph.ca/undergraduate-calendar/course-descriptions/) and output it to a JSON file.
-To run the scraper type:
+It will collect course information from the [University of Guelph website](https://calendar.uoguelph.ca/undergraduate-calendar/course-descriptions/) and output it to a JSON file.<br><br>
+To run the course scraper type:
 ```
-python3 src/scraper/scraper.py
+python3 src/scraper/course_scraper.py
 ```
-Once the program exits you should see a JSON file containing all the course data in src/scraper/data/scraped_data.json
+Once the program exits you should see a JSON file containing all the course data in src/scraper/data/scraped_course_data.json<br><br>
+To run the major scraper type:
+```
+python3 src/scraper/major_scraper.py
+```
+Once the program exits you should see a JSON file containing all the course data in src/scraper/data/scraped_major_data.json
 
 ## Course Searching
 
@@ -35,16 +40,19 @@ There are many valid flags that can be used to facilitate the searching of cours
 * -I Left empty most of the time. Can be used to change the location of the JSON data
 * -P Use this flag to search for courses with no prerequisites
 
-## Graph Course Visualization
+## Graph Course and Major Visualization
 
 Once the data has been scraped, the course search tool can be used.
 ```
 python3 src/visualizer.py <FLAGS>
 ```
-This is the flag that will be used for deciding which course
+There are many valid flags that can be used to facilitate the graphing of courses and majors:<br>
+NOTE: Choose one of -S, -M and -C
 * -S The subject of the desired courses e.g., `-S CIS`
-* -F Select which file type to use to save the graph e.g., `-F png`/`-F PNG`
+* -M The desired major to graph e.g., `-M CS:C`
+* -F Select which file type to use to save the graph e.g., ` `/`-F PNG`
 * -N Select name for the graph file e.g., `-N graph`
+* -C Select course for the graph to find programs that contain it e.g., `-C CIS*1300`
 * -hor Select to display the graph horizontally instead of vertically e.g., `-hor`
 
 ## Testing
