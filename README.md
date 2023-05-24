@@ -1,0 +1,1 @@
+Each sprint progressively adds more functionalty till the sprint 9 - which is the final product
