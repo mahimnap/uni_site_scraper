@@ -1,0 +1,243 @@
+html {
+  min-height: 100%;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-body {
+  padding-top: 10px;
+  background-color: #363940;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-nav {
+  background-color: #303136;
+  border-radius: 15px;
+}
+
+.App-nav-item{
+  color: #9a9ca1 !important;
+}
+
+.App-nav-item:hover {
+  color: #f9fff8 !important;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  border-radius: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.App-main-title {
+  margin-bottom: 50px;
+}
+
+.App-link {
+  color: #9a9ca1 !important;
+  text-decoration: none;
+}
+
+.App-link:hover {
+  color: #f9fff8 !important;
+  text-decoration: none;
+}
+
+#App-search-form { 
+  background-color: #40454b;
+  padding-left: 50px; 
+  padding-right: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+}
+
+.App-form-row {
+  display: table-row; 
+}
+
+.App-form-labels {
+  display: table-cell;
+  margin-right: 10px;
+  text-align: left;
+}
+
+.App-form-input {
+  display: table-cell;
+  font-size: 20px;
+  border: 1px solid white;
+  border-radius: 6px;
+  padding: 3px;
+  margin: 5px;
+  width: 100%;
+}
+
+#subjectsyntax {
+  box-sizing: border-box; 
+  border: 2px solid black; 
+  display:none;
+  width: 23ch;
+}
+
+#App-form-input-subjects:hover + #subjectsyntax{
+  display: table-row; 
+  position: absolute;
+  background-color: #18191d;
+  color: #d1d2d6;
+  font-size: 18px;
+  border: 0px;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+#termsyntax {
+  box-sizing: border-box;
+  border: 2px solid black;
+  display:none;
+  width: 17ch;
+}
+
+#App-form-input-terms:hover + #termsyntax{
+  display: table-row;
+  position: absolute;
+  background-color: #18191d;
+  color: #d1d2d6;
+  font-size: 18px;
+  border: 0px;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+#prereqsyntax {
+  box-sizing: border-box;
+  border: 2px solid black;
+  display:none;
+  width: 19ch;
+}
+
+#App-form-input-prereqs:hover + #prereqsyntax{
+  display: table-row;
+  position: absolute; 
+  background-color: #18191d;
+  color: #d1d2d6;
+  font-size: 18px;
+  border: 0px;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+#levelsyntax {
+  box-sizing: border-box;
+  border: 2px solid black;
+  display:none;
+  width: 44ch;
+}
+
+#App-form-input-levels:hover + #levelsyntax{
+  display: table-row;
+  position: absolute;   
+  background-color: #18191d;
+  color: #d1d2d6;
+  font-size: 18px;
+  border: 0px;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+#creditsyntax {
+  box-sizing: border-box;
+  border: 2px solid black;
+  display:none;
+  width: 34ch;
+}
+
+#App-form-input-credits:hover + #creditsyntax{
+  display: table-row;
+  position: absolute; 
+  background-color: #18191d;
+  color: #d1d2d6;
+  font-size: 18px;
+  border: 0px;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.App-button {
+  margin: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: 0px;
+  border-radius: 5px;
+  background-color: #b4b9bf;
+  color: #40454b;
+}
+
+.App-button:hover {
+  background-color: #fefefb;
+  box-shadow: 0 5px 10px #ccc;
+}
+
+#Submit-search-button {
+  margin-top: 20px;
+}
+
+.App-list-group {
+  margin: auto;
+  width: 90%;
+}
+
+.App-checkbox-group {
+  display: table-cell;
+}
+
+.App-checkbox {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+
+#output {
+  color: black; 
+}
+
+.auto-scroll-button {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  font-size: 30px;
+  background-color: #b4b9bf;
+  color: #40454b;
+  cursor: pointer;
+  border-radius: 5px;
+  border: none; 
+}
+
+.auto-scroll-button:hover {
+  background-color: #fefefb;
+  box-shadow: 0 5px 10px #ccc;
+}
+
+.App-select {
+  color: black;
+}
+
+.navbar {
+  background: #161717;
+}
+
+.footer {
+  background: #161717;
+  color: white;
+}

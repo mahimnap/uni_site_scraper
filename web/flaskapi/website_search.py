@@ -1,8 +1,6 @@
 import json
 import os
 import sys
-import argparse
-import platform
 import re
 
 """
@@ -176,32 +174,6 @@ def search(output, credits, terms, noprereq, subjects, levels):
     return set(creditMatch) & set(termMatch) & set(prereqMatch) & set(subjectMatch) & set(levelMatch)
 
 """
-Prints of the courses found by the search function into a user readable form
-"""
-def print_output(output, finalList):
-    print("MATCHED COURSES:")
-    print(" ")
-
-    # Looping through output file and finalList from above to find a match on courde code and printing course info in acceptable format
-    for allCourses in output['courses']:
-        for formattedCourse in finalList:
-            if formattedCourse == allCourses['code']:
-                temp_term = allCourses['term']
-                stripped_term = str(temp_term).replace('[','').replace(']','').replace('\'','').replace('\"','').replace(',','').replace(' ','')
-                temp_offerings = allCourses['offerings']
-                stripped_offerings = str(temp_offerings).replace ('[','').replace(']','').replace('\'','')
-
-                print(allCourses['code'], allCourses['name'], stripped_term, "[" + allCourses['creditWeight'] + "]")
-                print(allCourses['description'])
-                print("Prerequisite(s):",  allCourses['prereq'])
-                print("Equate(s):", allCourses['equivalent'])
-                print("Offering(s):", stripped_offerings)
-                print("Restriction(s):", allCourses['restrictions'])
-                print("Department(s):", allCourses['department'])
-                print("Location(s):", allCourses['location'])
-                print(" ")
-
-"""
 Opens a JSON file and returns the data
 """
 def getJSONData(json_location):
@@ -215,40 +187,29 @@ def getJSONData(json_location):
 
     return output
 
-
-if __name__ == '__main__':
-    # Gets the correct file path based on the user's operating system
-    if platform.system() == 'Linux' or platform.system() == 'Darwin':
-        sysRelDefault = 'src/scraper/data/scraped_course_data.json'
-        sysRelHelp = 'The location of the input json if not in scraper/data'
-    elif platform.system() == 'Windows':
-        sysRelDefault = 'src\scraper\data\scraped_course_data.json'
-        sysRelHelp = 'The location of the input json if not in scraper\data'
-    else: 
-        print('Error: ' + platform.system() + ' not supported') 
-        sys.exit()
-
-    # Every flag accepts a list of arguments, except filelocation(relative path) and prereq(t/f)
-    parser = argparse.ArgumentParser(description = 'A course search utility')
-    parser.add_argument('-C', '-c', nargs = '*', default = [], help = 'The creditWeight of the desired courses (0.5 1.0) or range (0.5 - 1.0)', required = False, metavar = "creditWeight")
-    parser.add_argument('-T', '-t', nargs = '*', default = [], help = 'Term of the desired courses (F)', required = False, metavar = "term")
-    parser.add_argument('-L', '-l', nargs = '*', default = [], help = 'The levels of the desired courses (1000 3000) or range (1000 - 3000)', required = False, metavar = "level")
-    parser.add_argument('-S', '-s', nargs = '*', default = [], help = 'The subject of the desired courses (CIS)', required = False, metavar = "subject")
-    parser.add_argument('-I', '-i', nargs = '?', default = sysRelDefault, help = sysRelHelp, required = False, metavar = "\"filelocation\"")
-    parser.add_argument('-P', '-p', default = False, help = 'Use this flag to search for courses with no prerequisites', required = False, action = "store_true")
-
-    args = parser.parse_args()
-    noprereq = args.P
+def executeSearch (noprereq, creditsPassed, termsPassed, levelsPassed, subjectsPassed, universityPassed):
+    if (universityPassed == "guelph"):
+        jsonFilename = 'guelph_json_data.json'
+    else:
+        jsonFilename = 'carleton_json_data.json'
     
     # Opening JSON data file
-    output = getJSONData(args.I)
+    output = getJSONData(jsonFilename)
     if output == -1:
+        print("Unable to open JSON file of course data")
         sys.exit()
 
-    parsed = argument_parser(output, args.C, args.T, args.L, args.S)
+    parsed = argument_parser(output, creditsPassed, termsPassed, levelsPassed, subjectsPassed)
     if parsed == -1:
         sys.exit()
 
-    finalList = search(output, parsed["credits"], parsed["terms"], noprereq, parsed["subjects"], parsed["levels"])
 
-    print_output(output, finalList)
+    courseList = search(output, parsed["credits"], parsed["terms"], noprereq, parsed["subjects"], parsed["levels"])
+    
+    finalList = []
+    for course_code in courseList:
+        for course in output['courses']:
+            if course['code'] == course_code:
+                finalList.append(course)
+                break
+    return finalList
