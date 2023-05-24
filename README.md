@@ -19,7 +19,7 @@ To run the scraper type:
 ```
 python3 src/scraper/scraper.py
 ```
-Once the program exits you should see a JSON file containing all the course data in src/scraper/data/json_data.json 
+Once the program exits you should see a JSON file containing all the course data in src/scraper/data/scraped_data.json
 
 ## Course Searching
 
@@ -34,6 +34,18 @@ There are many valid flags that can be used to facilitate the searching of cours
 * -S The subject of the desired courses e.g., `-S CIS`
 * -I Left empty most of the time. Can be used to change the location of the JSON data
 * -P Use this flag to search for courses with no prerequisites
+
+## Graph Course Visualization
+
+Once the data has been scraped, the course search tool can be used.
+```
+python3 src/visualizer.py <FLAGS>
+```
+This is the flag that will be used for deciding which course
+* -S The subject of the desired courses e.g., `-S CIS`
+* -F Select which file type to use to save the graph e.g., `-F png`/`-F PNG`
+* -N Select name for the graph file e.g., `-N graph`
+* -hor Select to display the graph horizontally instead of vertically e.g., `-hor`
 
 ## Testing
 

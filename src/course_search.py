@@ -219,10 +219,10 @@ def getJSONData(json_location):
 if __name__ == '__main__':
     # Gets the correct file path based on the user's operating system
     if platform.system() == 'Linux' or platform.system() == 'Darwin':
-        sysRelDefault = 'src/scraper/data/json_data.json'
+        sysRelDefault = 'src/scraper/data/scraped_data.json'
         sysRelHelp = 'The location of the input json if not in scraper/data'
     elif platform.system() == 'Windows':
-        sysRelDefault = 'src\scraper\data\json_data.json'
+        sysRelDefault = 'src\scraper\data\scraped_data.json'
         sysRelHelp = 'The location of the input json if not in scraper\data'
     else: 
         print('Error: ' + platform.system() + ' not supported') 

@@ -1,12 +1,13 @@
 from datetime import datetime
 from playwright.sync_api import sync_playwright
+from prereq_parser import *
 import time
 import json
 import sys
-import traceback
 import logging
 import logging.handlers
 import os
+import json 
 
 """
 This function instantiates a log file that keeps track of how long it takes to scrape the courses
@@ -104,9 +105,12 @@ def getData(logger, course):
     # Getting the course equivalents
     equivalents = extractString(logger, course, ".detail-equate_s_", True)
         
-    # Getting the course prerequisites
+    # Getting the course prerequisites and cleaning them for easy parsing
     prerequesites = extractString(logger, course, ".detail-prerequisite_s_", True)
-
+    prerequesites = cleanPrerequisites(prerequesites)
+    if prerequesites != "No Data":
+        prerequesites = parsePrerequisites(prerequesites)
+    
     return {
                 'name' : title,
                 'code' : code,
@@ -132,19 +136,19 @@ def main():
         page = browser.new_page()
         page.goto("https://calendar.uoguelph.ca/undergraduate-calendar/course-descriptions/", timeout = 0)
         scrape_time_start = time.time()
-        
+
         # Getting all links on the main page under the az_sitemap class, and then constructing a new list with their hrefs
         links_html = page.query_selector_all(".az_sitemap a")
         program_links_unflitered = []
         for link in links_html:
             program_links_unflitered.append(link.get_attribute("href"))
-            
+
         # Removing all links that aren't course description links
         program_links = []
         for link in program_links_unflitered:
             if "course-descriptions" in str(link):
                 program_links.append(str(link))
-                
+
         # Setting up the dictionary for JSON file output
         scraped_data = {}
         scraped_data["courses"] = []
@@ -152,22 +156,25 @@ def main():
         total_num_courses = 0
 
         # Looping through the individual pages
+        programs = []
         prefix_link = "https://calendar.uoguelph.ca/"
         for link in program_links:
+            programs.append(link[44:-1])
             total_num_programs += 1
             print("Visiting: '" + str(prefix_link) + str(link) + "'")
             page.goto(prefix_link + link)
             courses = page.query_selector_all(".courseblock")
-            
+
             # Looping through all of the courses on the department page
             for course in courses:
                 total_num_courses += 1
 
                 # Parsing the data into a dictionary that will be used for JSON output
                 scraped_data['courses'].append(getData(logger, course))
-        
+
         # Creating a data file
         scrape_time_end = time.time()
+        scraped_data["programs"] = programs
         scraped_data["total_num_courses"] = str(total_num_courses)
         scraped_data["total_num_programs"] = str(total_num_programs)
         scraped_data["time_taken_to_scrape"] = str(scrape_time_end - scrape_time_start)
@@ -176,7 +183,7 @@ def main():
         if not os.path.exists('src/scraper/data'):
             os.makedirs('src/scraper/data')
         
-        with open('src/scraper/data/json_data.json', 'w') as outfile:
+        with open('src/scraper/data/scraped_data.json', 'w') as outfile:
             json.dump(scraped_data, outfile, sort_keys=True, indent=4)
         browser.close()
 

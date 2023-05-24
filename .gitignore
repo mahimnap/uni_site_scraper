@@ -1,3 +1,4 @@
+src/scraper/logs
 src/__pycache__/
 src/scraper/__pycache__/
 test/__pycache__/
