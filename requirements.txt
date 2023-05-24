@@ -1,0 +1,6 @@
+playwright
+graphviz
+wheel
+Flask
+uwsgi
+requests

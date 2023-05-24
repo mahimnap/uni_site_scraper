@@ -1,0 +1,6 @@
+{
+   "email_username" : "cis3760w22group1bot@gmail.com",
+   "email_password" : "LesserHulls",
+   "email_receivers" : ["remuscalugarescu@gmail.com", "remcalu@outlook.com"],
+   "loop_interval_minutes" : 30
+}

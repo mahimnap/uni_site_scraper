@@ -159,4 +159,3 @@ sudo docker container prune                             DELETES UNUSED CONTAINER
 
 sudo docker image prune                                 DELETES UNUSED IMAGES
 ```
-
