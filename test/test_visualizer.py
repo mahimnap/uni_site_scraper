@@ -89,6 +89,23 @@ class TestFileFlag(unittest.TestCase):
 
     def test_svg(self):
         checkFileType(self.graph, 'svg')
+        
+class TestWhatMajors(unittest.TestCase):
+    def setUp(self):
+        self.graph = gv.Digraph()
+
+    def test_with_star(self):
+        self.assertGreater(whatMajors(self.graph, ["CIS*1300"]), 0)
+    def test_no_star(self):
+        self.assertGreater(whatMajors(self.graph, ["CIS1300"]), 0)
+    def test_with_space(self):
+        self.assertGreater(whatMajors(self.graph, ["CIS", "1300"]), 0)
+    def test_with_none(self):
+        self.assertEqual(whatMajors(self.graph, ["CIS*1000"]), 0)
+    def test_with_bad(self):
+        self.assertEqual(whatMajors(self.graph, ["1521casd"]), 0)
+    def test_with_one(self):
+        self.assertEqual(whatMajors(self.graph, ["ZOO*4910"]), 1)
 
 if __name__ == '__main__':
     unittest.main()
