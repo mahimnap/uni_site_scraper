@@ -1,8 +1,8 @@
-# W22 CIS*3760 Team 1
+# University Site Scraper and Major Graph Visualization
 
 ## Overview
 
-A CLI tool to display course information for the University of Guelph. This tool supports multiple ways of searching and its capabilities are described in the course searching section below. This tool is also built without third-party libraries to improve long-term support.
+A tool to display course information for the University of Guelph. This tool supports multiple ways of searching and its capabilities are described in the course searching section below. This tool is also built without third-party libraries to improve long-term support.
 
 Python scripts should be run from the root of the Git repository.
 
